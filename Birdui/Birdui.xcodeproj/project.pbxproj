@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		34D6D3EE24BAD357003EF212 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 34D6D3ED24BAD357003EF212 /* .swiftlint.yml */; };
 		34F662A424BB00D20070A187 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F662A324BB00D20070A187 /* DateFormatter.swift */; };
+		3DDE615924BB3C2500E3012A /* MascotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDE615824BB3C2500E3012A /* MascotView.swift */; };
 		CD7798B924AF0799004D6A6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7798B824AF0799004D6A6B /* AppDelegate.swift */; };
 		CD7798BB24AF0799004D6A6B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7798BA24AF0799004D6A6B /* SceneDelegate.swift */; };
 		CD7798BF24AF079C004D6A6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD7798BE24AF079C004D6A6B /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		34D6D3ED24BAD357003EF212 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		34F662A324BB00D20070A187 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		3DDE615824BB3C2500E3012A /* MascotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MascotView.swift; sourceTree = "<group>"; };
 		CD7798B524AF0799004D6A6B /* Birdui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Birdui.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD7798B824AF0799004D6A6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD7798BA24AF0799004D6A6B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				CD7798C624AF079C004D6A6B /* Info.plist */,
 				CD7798C024AF079C004D6A6B /* Preview Content */,
 				34F662A324BB00D20070A187 /* DateFormatter.swift */,
+				3DDE615824BB3C2500E3012A /* MascotView.swift */,
 			);
 			path = Birdui;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				CD7798BB24AF0799004D6A6B /* SceneDelegate.swift in Sources */,
 				CD7798D624B040C9004D6A6B /* NewPostView.swift in Sources */,
 				CD7798DE24B05896004D6A6B /* ImagePicker.swift in Sources */,
+				3DDE615924BB3C2500E3012A /* MascotView.swift in Sources */,
 				CD7798DC24B04C1A004D6A6B /* PostViewModel.swift in Sources */,
 				CD7798D824B04BEC004D6A6B /* PostListView.swift in Sources */,
 			);
