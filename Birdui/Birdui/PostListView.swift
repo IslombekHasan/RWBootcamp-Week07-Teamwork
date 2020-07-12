@@ -15,7 +15,7 @@ struct PostListView: View {
         func body(content: Content) -> some View {
             return content
                 .foregroundColor(Color.black)
-                .font(.system(size: 17))
+                .font(.system(.title))
         }
     }
 
@@ -27,35 +27,28 @@ struct PostListView: View {
     }
 
     var body: some View {
-        NavigationView {
         VStack(alignment: .leading) {
-            let leftImageSize = 50
-            HStack {
-                Image("mascot_swift-badge")
-                    .resizable()
-                    .frame(width: 50, height: 50)
-                Spacer()
-                Text("Home")
-                    .modifier(HeaderTitleTextStyle())
-                    .padding(.leading, -CGFloat(leftImageSize))
-                Spacer()
-            }
-            HStack {
+            Group {
+                HStack {
+                    MascotImage()
+                    Spacer()
+                    Text("Home")
+                        .modifier(HeaderTitleTextStyle())
+                        .offset(x: -mascotImageWidth/2, y: 0)
+                    Spacer()
+                }
                 Button(action: { self.modalIsPresented = true }) {
                     Text("Create New post")
                         .modifier(ButtonTextStyle())
                 }
             }
+            .padding(.leading, 16)
+            .padding(.top, 8)
+
             List {
-                Text("Layout header, new-post button, List of posts")
+                PostView(post: PostViewModel.shared.posts[1])
             }
-            .navigationBarTitle("")
-            .navigationBarHidden(true)
         }
-        .padding(.top, 16)
-        .padding(.leading, 24)
-        .padding(.trailing, 24)
-    }
         .sheet(isPresented: $modalIsPresented) {
             // Display New Post View
         }

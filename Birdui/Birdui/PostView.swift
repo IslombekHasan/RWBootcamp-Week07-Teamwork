@@ -17,8 +17,7 @@ struct PostView: View {
         HStack {
             VStack(alignment: .leading) {
                 HStack(spacing: 8) {
-                    Image("mascot_swift-badge").resizable()
-                        .frame(width: 50, height: 50)
+                    MascotImage()
                     VStack(alignment: .leading, spacing: 5) {
                         Text("\(post.userName)").lineLimit(1)
                         Text("\(post.timestamp.formattedString())")
@@ -37,9 +36,8 @@ struct PostView: View {
                             Spacer()
                         }
                     }
-                }.padding(8)
+                }
             }
-            Spacer()
         }
     }
 }

@@ -2,5 +2,9 @@ line_length: 200
 identifier_name:
     excluded:
         - id
+type_name:
+  allowed_symbols: ["_"]
 opt_in_rules:
     - indentation_width
+disabled_rules:
+    - multiple_closures_with_trailing_closure
