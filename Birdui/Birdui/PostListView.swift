@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct PostListView: View {
+    @ObservedObject var model = PostViewModel.shared
     @State var modalIsPresented = false
 
     struct HeaderTitleTextStyle: ViewModifier {
@@ -45,12 +46,12 @@ struct PostListView: View {
             .padding(.leading, 16)
             .padding(.top, 8)
 
-            List {
-                PostView(post: PostViewModel.shared.posts[1])
+            List(model.posts) { post in
+                PostView(post: post)
             }
         }
         .sheet(isPresented: $modalIsPresented) {
-            // Display New Post View
+            NewPostView()
         }
     }
 }

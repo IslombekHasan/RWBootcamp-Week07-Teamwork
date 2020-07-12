@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct NewPostView: View {
-    var postHandler: PostViewModel
+    var postHandler: PostViewModel = PostViewModel.shared
     @Environment(\.presentationMode) var presentationMode
 
     @State var username: String = ""
@@ -51,19 +51,13 @@ struct NewPostView: View {
                 .padding()
         }
             .sheet(isPresented: $showImagePicker) {
-                // TODO: Show ImagePicker
-                Text("Replace with code to show ImagePicker")
+                ImagePicker(image: self.$uiImage)
         }
     }
-    
-//    func loadImage() {
-//        guard let inputImage = inputImage else { return }
-//        image = Image(uiImage: inputImage)
-//    }
 }
 
 struct NewPostView_Previews: PreviewProvider {
     static var previews: some View {
-        NewPostView(postHandler: PostViewModel())
+        NewPostView()
     }
 }
