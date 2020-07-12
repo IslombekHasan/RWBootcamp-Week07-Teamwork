@@ -12,10 +12,35 @@ struct PostView: View {
     let post: MediaPost
 
     var body: some View {
-        // TODO: This should look exactly like Birdie's table view cell.
-        // The post text is left-aligned below the mascot image.
-        // The image, if any, is horizontally centered in the view.
-        Text("Layout the view for each post.")
+
+        // header
+        HStack {
+            VStack(alignment: .leading) {
+                HStack(spacing: 8) {
+                    Image("mascot_swift-badge").resizable()
+                        .frame(width: 50, height: 50)
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("\(post.userName)").lineLimit(1)
+                        Text("\(post.timestamp.formattedString())")
+                    }
+                }
+
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(post.textBody != nil ? "\(post.textBody!)" : "")
+                    if post.uiImage != nil {
+                        HStack {
+                            Spacer()
+                            Image(uiImage: post.uiImage!)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 200, height: 100, alignment: .center)
+                            Spacer()
+                        }
+                    }
+                }.padding(8)
+            }
+            Spacer()
+        }
     }
 }
 
