@@ -13,11 +13,12 @@ class MediaPostsHandler: NSObject {
     var mediaPosts: [MediaPost] = []
 
     override init() { }
- 
+
     func getPosts() {
+        // swiftlint:disable line_length
         let imagePost1 = MediaPost(textBody: "I love debugging software!", userName: "Jay", timestamp: Date(timeIntervalSinceNow: -123456), imageName: "chop")
         let imagePost2 = MediaPost(textBody: "Went to the Aquarium today :]", userName: "Audrey", timestamp: Date(timeIntervalSinceNow: -9876), imageName: "octopus")
-      let textPost1 = MediaPost(textBody: "Hello World!", userName: "Bhagat", timestamp: Date(timeIntervalSinceNow: -67890), imageName: nil)
+        let textPost1 = MediaPost(textBody: "Hello World!", userName: "Bhagat", timestamp: Date(timeIntervalSinceNow: -67890), imageName: nil)
         let textPost2 = MediaPost(textBody: "This is my favorite social media app! This is my favorite social media app! This is my favorite social media app!", userName: "Jeff", timestamp: Date(timeIntervalSinceNow: -2345), imageName: nil)
 
         mediaPosts = [imagePost1, imagePost2, textPost1, textPost2]

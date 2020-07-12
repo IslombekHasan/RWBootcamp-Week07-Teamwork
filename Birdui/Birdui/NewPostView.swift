@@ -9,55 +9,55 @@
 import SwiftUI
 
 struct NewPostView: View {
-  var postHandler: PostViewModel
-  @Environment(\.presentationMode) var presentationMode
-  
-  @State var username: String = ""
-  @State var postText: String = ""
-  @State var showImagePicker = false
-  @State var uiImage: UIImage?
-  
-  let imageSize: CGFloat = 200
-  
-  var body: some View {
-    VStack {
-      Text("New Post")
-        .font(.headline)
-      Form {
-        TextField("Username", text: $username)
-        Button("Pick image") {
-          self.showImagePicker = true
+    var postHandler: PostViewModel
+    @Environment(\.presentationMode) var presentationMode
+
+    @State var username: String = ""
+    @State var postText: String = ""
+    @State var showImagePicker = false
+    @State var uiImage: UIImage?
+
+    let imageSize: CGFloat = 200
+
+    var body: some View {
+        VStack {
+            Text("New Post")
+                .font(.headline)
+            Form {
+                TextField("Username", text: $username)
+                Button("Pick image") {
+                    self.showImagePicker = true
+                }
+                if uiImage != nil {
+                    Image(uiImage: uiImage!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: imageSize, height: imageSize)
+                }
+                TextField("Post text", text: $postText)
+            }
+            HStack {
+                Button("Cancel") {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+                Spacer()
+                Button("Post") {
+                    self.postHandler.addPost(post: MediaPost(textBody: self.postText, userName: self.username, timestamp: Date(), uiImage: self.uiImage))
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+                    .disabled(username.isEmpty && postText.isEmpty)
+            }
+                .padding()
         }
-        if uiImage != nil {
-          Image(uiImage: uiImage!)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(width: imageSize, height: imageSize)
+            .sheet(isPresented: $showImagePicker) {
+                // TODO: Show ImagePicker
+                Text("Replace with code to show ImagePicker")
         }
-        TextField("Post text", text: $postText)
-      }
-      HStack {
-        Button("Cancel") {
-          self.presentationMode.wrappedValue.dismiss()
-        }
-        Spacer()
-        Button("Post") {
-          self.postHandler.addPost(post: MediaPost(textBody: self.postText, userName: self.username, timestamp: Date(), uiImage: self.uiImage))
-          self.presentationMode.wrappedValue.dismiss()
-        }
-        .disabled(username.isEmpty && postText.isEmpty)
-      }
-      .padding()
     }
-    .sheet(isPresented: $showImagePicker) {
-      // TODO: Show ImagePicker
-      Text("Replace with code to show ImagePicker")
-    }
-  }
 }
 
 struct NewPostView_Previews: PreviewProvider {
-  static var previews: some View {
-    NewPostView(postHandler: PostViewModel())
-  }
+    static var previews: some View {
+        NewPostView(postHandler: PostViewModel())
+    }
 }

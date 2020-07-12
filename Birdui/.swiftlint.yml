@@ -1,0 +1,6 @@
+line_length: 200
+identifier_name:
+    excluded:
+        - id
+opt_in_rules:
+    - indentation_width
