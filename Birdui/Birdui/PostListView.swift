@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PostListView: View {
     @ObservedObject var model = PostViewModel.shared
-    @State var modalIsPresented = false
+    @State private var modalIsPresented = false
 
     struct HeaderTitleTextStyle: ViewModifier {
         func body(content: Content) -> some View {
@@ -48,6 +48,19 @@ struct PostListView: View {
 
             List(model.posts) { post in
                 PostView(post: post)
+                    .contextMenu {
+                        Button(action: {
+                            // Share action
+                            if let text = post.textBody {
+                                let activityView = UIActivityViewController(activityItems: [text], applicationActivities: nil)
+                                UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true,
+                                                                                                completion: nil)
+                            }
+                        }) {
+                            Text("Share the post")
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                    }
             }
         }
         .sheet(isPresented: $modalIsPresented) {
