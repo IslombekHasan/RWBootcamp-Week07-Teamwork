@@ -9,23 +9,8 @@
 import SwiftUI
 
 struct PostListView: View {
-    @ObservedObject var model = PostViewModel.shared
-    @State var modalIsPresented = false
-
-    struct HeaderTitleTextStyle: ViewModifier {
-        func body(content: Content) -> some View {
-            return content
-                .foregroundColor(Color.black)
-                .font(.system(.title))
-        }
-    }
-
-    struct ButtonTextStyle: ViewModifier {
-        func body(content: Content) -> some View {
-            return content
-                .font(.system(size: 15))
-        }
-    }
+    @EnvironmentObject var postStore: PostViewModel
+    @State private var modalIsPresented = false
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -47,18 +32,34 @@ struct PostListView: View {
                 .padding(.leading, 16)
                 .padding(.top, 8)
 
-            List(model.posts) { post in
+            List(postStore.posts) { post in
                 PostView(post: post)
+                    .padding(.bottom, 8)
             }
         }
             .sheet(isPresented: $modalIsPresented) {
-                NewPostView()
+                NewPostView(postHandler: self.postStore)
+        }
+    }
+
+    struct HeaderTitleTextStyle: ViewModifier {
+        func body(content: Content) -> some View {
+            return content
+                .foregroundColor(Color.black)
+                .font(.system(.title))
+        }
+    }
+
+    struct ButtonTextStyle: ViewModifier {
+        func body(content: Content) -> some View {
+            return content
+                .font(.system(size: 15))
         }
     }
 }
 
 struct PostListView_Previews: PreviewProvider {
     static var previews: some View {
-        PostListView()
+        PostListView().environmentObject(PostViewModel())
     }
 }
