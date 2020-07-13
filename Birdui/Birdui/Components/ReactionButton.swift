@@ -9,14 +9,15 @@
 import SwiftUI
 
 struct ReactionButton: View {
+    @EnvironmentObject var postViewModel: PostViewModel
     var post: MediaPost
 
     var body: some View {
         Button(action: {
             if self.post.reaction == .neutral {
-                PostViewModel.shared.react(to: self.post, with: .like)
+                self.postViewModel.react(to: self.post, with: .like)
             } else {
-                PostViewModel.shared.react(to: self.post, with: .neutral)
+                self.postViewModel.react(to: self.post, with: .neutral)
             }
         }) {
             Image(systemName: post.reaction.rawValue)
@@ -25,7 +26,7 @@ struct ReactionButton: View {
             .contextMenu {
                 ForEach(MediaPost.Reaction.allCases, id: \.self) { reaction in
                     Button(action: {
-                        PostViewModel.shared.react(to: self.post, with: reaction)
+                        self.postViewModel.react(to: self.post, with: reaction)
                     }) {
                         Text(String(describing: reaction).capitalized)
                         Image(systemName: reaction.rawValue)
@@ -46,6 +47,6 @@ struct ActionButtonStyle: ViewModifier {
 
 struct ReactionButton_Previews: PreviewProvider {
     static var previews: some View {
-        ReactionButton(post: PostViewModel.shared.posts[0])
+        ReactionButton(post: PostViewModel().posts[0])
     }
 }

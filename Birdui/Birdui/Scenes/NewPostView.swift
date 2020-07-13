@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct NewPostView: View {
-    var postHandler: PostViewModel = PostViewModel.shared
+    var postHandler: PostViewModel
     @Environment(\.presentationMode) var presentationMode
 
     @State var username: String = ""
@@ -23,6 +23,7 @@ struct NewPostView: View {
         VStack {
             Text("New Post")
                 .font(.headline)
+                .padding(.top, 16)
             Form {
                 TextField("Username", text: $username)
                 Button("Pick image") {
@@ -57,6 +58,6 @@ struct NewPostView: View {
 
 struct NewPostView_Previews: PreviewProvider {
     static var previews: some View {
-        NewPostView()
+        NewPostView(postHandler: PostViewModel())
     }
 }

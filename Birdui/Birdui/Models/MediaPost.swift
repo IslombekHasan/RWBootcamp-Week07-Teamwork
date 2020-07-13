@@ -7,6 +7,13 @@
 //
 
 import UIKit
+//
+//protocol Postable {
+//    var id: UUID { get }
+//    var textBody: String? { get }
+//    var userName: String { get }
+//    var timestamp: Date { get }
+//}
 
 struct MediaPost: Identifiable {
     let id = UUID()
