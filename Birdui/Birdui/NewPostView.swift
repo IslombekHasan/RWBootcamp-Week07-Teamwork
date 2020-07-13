@@ -44,7 +44,6 @@ struct NewPostView: View {
                 Button("Post") {
                     self.postHandler.addPost(post: MediaPost(textBody: self.postText, userName: self.username, timestamp: Date(), uiImage: self.uiImage))
                     self.presentationMode.wrappedValue.dismiss()
-                    self.showImagePicker.toggle()
                 }
                     .disabled(username.isEmpty && postText.isEmpty)
             }
