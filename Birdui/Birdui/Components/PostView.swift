@@ -93,6 +93,7 @@ struct PostView: View {
             shareItems.append(image)
         }
         let activityView = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
+        activityView.popoverPresentationController?.sourceView = UIView() // required for iPads
         UIApplication.shared.windows.first?.rootViewController?.present(activityView, animated: true)
     }
 

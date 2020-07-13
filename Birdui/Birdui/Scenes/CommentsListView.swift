@@ -10,16 +10,27 @@ import SwiftUI
 
 struct CommentsListView: View {
     @EnvironmentObject var postViewModel: PostViewModel
+    @Environment(\.presentationMode) var presentationMode
     @State private var newComment: String = ""
+
     var postID: UUID
 
     var names = ["Hand-walking Crab", "SpaceCat", "SeaSeal", "Flying Bison", "Swifty"]
 
     var body: some View {
         VStack {
-            Text("Comments")
-                .font(.headline)
+            HStack(alignment: .center) {
+                Text("Comments")
+                    .font(.headline)
+                Spacer()
+                Button(action: { self.presentationMode.wrappedValue.dismiss() }) {
+                    Image(systemName: "xmark.square.fill")
+                }.modifier(ActionButtonStyle())
+
+            }
+                .padding(.horizontal, 16)
                 .padding(.top, 16)
+
             Divider()
             List(postViewModel.comments.filter({ self.postID == $0.postID })) { comment in
                 CommentView(comment: comment)
@@ -40,6 +51,7 @@ struct CommentsListView: View {
                 .padding()
                 .background(Color(.systemGray6))
         }
+            .keyboardAdaptive()
     }
 }
 
