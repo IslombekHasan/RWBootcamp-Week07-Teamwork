@@ -15,8 +15,8 @@ class PostViewModel: ObservableObject {
 
     init() {
         let imagePost1 = MediaPost(textBody: "I love debugging software!", userName: "Jay", timestamp: Date(timeIntervalSinceNow: -123456), uiImage: UIImage(named: "chop"))
-        let imagePost2 = MediaPost(textBody: "Went to the Aquarium today :]", userName: "Audrey", timestamp: Date(timeIntervalSinceNow: -9876), uiImage: UIImage(named: "octopus"))
-        let textPost1 = MediaPost(textBody: "Hello World!", userName: "Bhagat", timestamp: Date(timeIntervalSinceNow: -67890), uiImage: nil)
+        let imagePost2 = MediaPost(textBody: "Went to the Aquarium today :]", userName: "Audrey", timestamp: Date(timeIntervalSinceNow: -9876), uiImage: UIImage(named: "octopus"), reaction: .like)
+        let textPost1 = MediaPost(textBody: "Hello World!", userName: "Bhagat", timestamp: Date(timeIntervalSinceNow: -67890), uiImage: nil, reaction: .love)
         let textPost2 = MediaPost(textBody: "This is my favorite social media app! This is my favorite social media app! This is my favorite social media app!",
                                   userName: "Jeff", timestamp: Date(timeIntervalSinceNow: -2345), uiImage: nil)
 
@@ -26,5 +26,13 @@ class PostViewModel: ObservableObject {
     func addPost(post: MediaPost) {
         posts.append(post)
         posts = posts.sorted(by: { $0.timestamp > $1.timestamp })
+    }
+
+    func react(to post: MediaPost, with reaction: MediaPost.Reaction) {
+        if let index = posts.firstIndex(where: { (postToCompare) -> Bool in
+            post.id == postToCompare.id
+        }) {
+            posts[index].reaction = reaction
+        }
     }
 }

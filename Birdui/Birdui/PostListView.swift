@@ -35,23 +35,24 @@ struct PostListView: View {
                     Spacer()
                     Text("Home")
                         .modifier(HeaderTitleTextStyle())
-                        .offset(x: -mascotImageWidth/2, y: 0)
+                        .offset(x: -mascotImageWidth / 2, y: 0)
                     Spacer()
                 }
                 Button(action: { self.modalIsPresented = true }) {
-                    Text("Create New post")
+                    Image(systemName: "square.and.pencil")
+                    Text("New Post")
                         .modifier(ButtonTextStyle())
                 }
             }
-            .padding(.leading, 16)
-            .padding(.top, 8)
+                .padding(.leading, 16)
+                .padding(.top, 8)
 
             List(model.posts) { post in
                 PostView(post: post)
             }
         }
-        .sheet(isPresented: $modalIsPresented) {
-            NewPostView()
+            .sheet(isPresented: $modalIsPresented) {
+                NewPostView()
         }
     }
 }

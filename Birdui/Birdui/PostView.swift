@@ -12,40 +12,49 @@ struct PostView: View {
     let post: MediaPost
 
     var body: some View {
-
-        // header
-        HStack {
-            VStack(alignment: .leading) {
-                HStack(spacing: 8) {
-                    MascotImage()
-                    VStack(alignment: .leading, spacing: 5) {
-                        Text("\(post.userName)").lineLimit(1)
-                        Text("\(post.timestamp.formattedString())")
-                    }
+        VStack(alignment: .leading) {
+            HStack(spacing: 8) {
+                MascotImage()
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("\(post.userName)").lineLimit(1)
+                    Text("\(post.timestamp.formattedString())")
                 }
+            }
 
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(post.textBody != nil ? "\(post.textBody!)" : "")
-                    if post.uiImage != nil {
-                        HStack {
-                            Spacer()
-                            Image(uiImage: post.uiImage!)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 200, height: 100, alignment: .center)
-                            Spacer()
-                        }
+            VStack(alignment: .leading, spacing: 8) {
+                Text("\(post.textBody!)")
+                    .fixedSize(horizontal: false, vertical: true)
+                if post.uiImage != nil {
+                    HStack {
+                        Spacer()
+                        Image(uiImage: self.post.uiImage!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 175, alignment: .center)
+                            .cornerRadius(8)
+                        Spacer()
                     }
                 }
             }
+            HStack {
+                Spacer()
+                ReactionButton(post: post)
+                Spacer()
+                Button(action: {
+                    print("sharing")
+                }) {
+                    Image(systemName: "square.and.arrow.up")
+                }.modifier(ActionButtonStyle())
+                Spacer()
+            }
+                .buttonStyle(BorderlessButtonStyle())
         }
+            .padding(.bottom, 8)
     }
 }
 
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
-        PostView(post: MediaPost(textBody: "Went to the Aquarium today :]",
-                                 userName: "Audrey", timestamp: Date(timeIntervalSinceNow: -9876),
-                                 uiImage: UIImage(named: "octopus")))
+        PostView(post: PostViewModel.shared.posts[1])
     }
 }
